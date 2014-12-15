@@ -124,6 +124,6 @@ it will enable some additional statistic values that would otherwise not be avai
 
 ## Installation
 
-Import the Plugin into the dynaTrace Server. For details how to do this please refer to the [dynaTrace documentation](https://community.compuwareapm.com/community/display/DOCDT55/Plugin+Management).  
+Import the Plugin into the dynaTrace Server. For details how to do this please refer to the [dynaTrace documentation](https://community.compuwareapm.com/community/display/DOCDT61/Plugin+Management).  
 Next import the two Dashboards attached to this page, they will give you a good starting point.
 
