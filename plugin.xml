@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!-- plugin.xml file written by dynaTrace Client 4.1.0 -->
+<plugin>
+  <extension point="com.dynatrace.diagnostics.pdk.pluginconfig" id="com.dynatrace.plugins.mq" name="WebSphere MQ Plugin">
+    <information>
+      <category value="" />
+      <description value="Monitoring of WebSphere MQ objects such as queues, topics and subscriptions. Also,  includes status of Queue Manager(s) including standby status support." />
+      <supportlevel value="unsupported" />
+    </information>
+    <configuration>
+      <property key="method" label="Method" type="list" description="Specify the type of Connection" default="SSH">
+        <list>
+          <item value="SSH" />
+          <item value="Local" />
+        </list>
+      </property>
+      <property key="authMethod" label="Authentication Method" type="list" description="Specify the type of SSH Authentication." default="Password">
+        <list>
+          <item value="Password" />
+          <item value="PublicKey" />
+        </list>
+        <visibility>
+          <rule key="method" value="SSH" />
+        </visibility>
+      </property>
+      <property key="port" label="Port" type="string" description="The host's port. Default is port 22." default="">
+        <visibility>
+          <rule key="method" value="SSH" />
+        </visibility>
+      </property>
+      <property key="serverUsername" label="Username" type="string" description="The username that is used for authorization with the host." default="">
+        <visibility>
+          <rule key="method" value="SSH" />
+        </visibility>
+      </property>
+      <property key="serverPassword" label="Password" type="password" description="The password for the username." default="">
+        <visibility>
+          <rule key="authMethod" value="Password" />
+        </visibility>
+      </property>
+      <property key="publickeyPassphrase" label="Passphrase" type="password" description="The password for the pem-file." default="">
+        <visibility>
+          <rule key="authMethod" value="PublicKey" />
+        </visibility>
+      </property>
+      <property key="publicKey" label="Key-File" type="string" description="The keyfile for the ssh-keypair, e.g. C:/.ssh/id_rsa" default="">
+        <visibility>
+          <rule key="authMethod" value="PublicKey" />
+        </visibility>
+      </property>
+      <property key="queueManager.count" label="Number of Queue Manager(s)" type="long" description="Number of queue managers in your environment. For the number of queue managers defined here, ensure that the same number of queue manager names are also filled." default="2" />
+      <property key="mq.bin.path" label="WebSphere MQ Binary directory" type="string" description="Full path to the bin directory of the local MQ install" default="/usr/bin/" />
+      <property key="queueManager.name1" label="Queue Manager Name 1" type="string" description="Name of the first queue manager to connect to" default="QM_LR_1" />
+      <property key="queueManager.name2" label="Queue Manager Name 2" type="string" description="Name of the second queue manager&#x9;&#x9;&#x9;" default="QM_OC_2" />
+      <property key="queueManager.name3" label="Queue Manager Name 3" type="string" description="My property description ..." default="" />
+      <property key="queueManager.name4" label="Queue Manager Name 4" type="string" description="My property description ..." default="" />
+      <property key="queueManager.name5" label="Queue Manager Name 5" type="string" description="My property description ..." default="" />
+      <property key="forceEnglish" label="Force English response" type="boolean" description="This uses the -n parameter for dspmq command which does not work in older MQ versions." default="false" />
+      <property key="object.count" label="Number of Ojbects" type="long" description="My property description ..." default="0" />
+      <property key="object.type" label="Object type" type="list" description="Type of the MQ object (Queue, Topic...)" default="Queue">
+        <list>
+          <item value="Queue" />
+          <item value="Topic" />
+          <item value="Subscription" />
+        </list>
+      </property>
+      <property key="object.name1" label="Object Name1" type="string" description="Name of the queue, topic..." default="DSTR.EMAIL.QUEUE">
+        <visibility>
+          <rule key="object.type" value="Subscription" />
+          <rule key="object.type" value="Topic" />
+          <rule key="object.type" value="Queue" />
+        </visibility>
+      </property>
+      <property key="object.name2" label="Object Name2" type="string" description="My property description ..." default="" />
+      <property key="object.name3" label="Object Name3" type="string" description="My property description ..." default="" />
+      <property key="object.name4" label="Object Name4" type="string" description="My property description ..." default="" />
+      <property key="object.name5" label="Object Name5" type="string" description="My property description ..." default="" />
+      <property key="object.name6" label="Object Name6" type="string" description="&#x9;&#x9;" default="" />
+      <property key="object.name7" label="Object Name7" type="string" description="My property description ..." default="" />
+      <property key="object.name8" label="Object Name8" type="string" description="My property description ..." default="" />
+      <property key="object.name9" label="Object Name9" type="string" description="My property description ..." default="" />
+    </configuration>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitor" id="com.dynatrace.plugins.mq.monitor" name="Websphere MQ Monitor">
+    <plugin configid="com.dynatrace.plugins.mq" class="com.dynatrace.plugins.mq.MQMonitorPlugin" />
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.dynatrace.plugins.mq.metricgroup1" name="WebSphere MQ Queue">
+    <metricgroup monitorid="com.dynatrace.plugins.mq.monitor">
+      <metric defaultrate="purepath" name="Queue Depth1" unit="number" description="The current depth of the queue, that is, the number of messages on the queue. This includes both committed messages and uncommitted messages." />
+      <metric defaultrate="purepath" name="Queue Depth2" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Queue Depth3" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Queue Depth4" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Queue Depth5" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Queue Depth6" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Queue Depth7" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Queue Depth8" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Queue Depth9" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Duration Since Last Insert1" unit="s" description="Elapsed time in seconds since the last message was submitted since the queue manager started. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Duration Since Last Insert2" unit="s" description="Elapsed time in seconds since the last message was submitted since the queue manager started. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Duration Since Last Insert3" unit="s" description="Elapsed time in seconds since the last message was submitted since the queue manager started. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Duration Since Last Insert4" unit="s" description="Elapsed time in seconds since the last message was submitted since the queue manager started. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Duration Since Last Insert5" unit="s" description="Elapsed time in seconds since the last message was submitted since the queue manager started. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Duration Since Last Insert6" unit="s" description="Elapsed time in seconds since the last message was submitted since the queue manager started. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Duration Since Last Insert7" unit="s" description="Elapsed time in seconds since the last message was submitted since the queue manager started. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Duration Since Last Insert8" unit="s" description="Elapsed time in seconds since the last message was submitted since the queue manager started. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Duration Since Last Insert9" unit="s" description="Elapsed time in seconds since the last message was submitted since the queue manager started. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Interval Since Last Read1" unit="s" description="Elapsed time in seconds since the last message retrieval happened since the queue manager started. A message being browsed does not count as a message being retrieved.&#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Duration Since Last Read2" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Duration Since Last Read3" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Duration Since Last Read4" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Duration Since Last Read5" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Duration Since Last Read6" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Duration Since Last Read7" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Duration Since Last Read8" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Duration Since Last Read9" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Input Handle Count1" unit="number" description="The number of handles that are currently open for input for the queue (either input-shared or input-exclusive). This does not include handles that are open for browse. For shared queues, the number returned applies only to the queue manager generating the reply. The number is not the total for all the queue managers in the queue-sharing group." />
+      <metric defaultrate="purepath" name="Input Handle Count2" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Input Handle Count3" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Input Handle Count4" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Input Handle Count5" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Input Handle Count6" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Input Handle Count7" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Input Handle Count8" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Input Handle Count9" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Duration Since Last Read1" unit="s" description="Elapsed time in seconds since the last message retrieval happened since the queue manager started. A message being browsed does not count as a message being retrieved.&#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Interval Since Last Read2" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Interval Since Last Read3" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Interval Since Last Read4" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Interval Since Last Read5" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Interval Since Last Read6" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Interval Since Last Read7" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Interval Since Last Read8" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Interval Since Last Read9" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Oldest Message Age1" unit="s" description="Age, in seconds, of the oldest message on the queue. The maximum displayable value is 999 999 999; if the age exceeds this value, 999 999 999 is displayed. &#xD;&#xA;A value is only displayed for this parameter if MONQ is set to a value other than OFF for this queue." />
+      <metric defaultrate="purepath" name="Oldest Message Age2" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Oldest Message Age3" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Oldest Message Age4" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Oldest Message Age5" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Oldest Message Age6" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Oldest Message Age7" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Oldest Message Age8" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Oldest Message Age9" unit="s" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Output Handle Count1" unit="number" description="This is the number of handles that are currently open for output for the queue. For shared queues, the number returned applies only to the queue manager generating the reply. The number is not the total for all the queue managers in the queue-sharing group." />
+      <metric defaultrate="purepath" name="Output Handle Count2" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Output Handle Count3" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Output Handle Count4" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Output Handle Count5" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Output Handle Count6" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Output Handle Count7" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Output Handle Count8" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Output Handle Count9" unit="number" description="My metric description ..." />
+    </metricgroup>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.dynatrace.plugins.mq.metricgroup2" name="WebSphere MQ Topic">
+    <metricgroup monitorid="com.dynatrace.plugins.mq.monitor">
+      <metric defaultrate="purepath" name="Publisher count" unit="number" description="The number of applications currently publishing to the topic." />
+      <metric defaultrate="purepath" name="Subscriber count" unit="number" description="This is the number of subscribers for this topic string, including durable subscribers who are not currently connected." />
+    </metricgroup>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.dynatrace.plugins.mq.metricgroup3" name="WebSphere MQ Subscription">
+    <metricgroup monitorid="com.dynatrace.plugins.mq.monitor">
+      <metric defaultrate="purepath" name="Message count" unit="number" description="The number of messages that went through." />
+      <metric defaultrate="purepath" name="Duration since last restoration" unit="s" description="Elapsed time in seconds since the last restoration of the connection." />
+      <metric defaultrate="purepath" name="Duration since last message" unit="s" description="Elapsed time in seconds since the last message was retrieved." />
+    </metricgroup>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.dynatrace.plugins.mq.metricgroup4" name="WebSphere MQ Queue Manager">
+    <metricgroup monitorid="com.dynatrace.plugins.mq.monitor">
+      <metric defaultrate="purepath" name="Status1" unit="number" description="Returns 0 if the queue manager is stopped. Returns 1 if it is in standby mode. Returns 2 if running. " />
+      <metric defaultrate="purepath" name="Status3" unit="number" description="Returns 0 if the queue manager is stopped. Returns 1 if it is in standby mode. Returns 2 if running. " />
+      <metric defaultrate="purepath" name="Status5" unit="number" description="Returns 0 if the queue manager is stopped. Returns 1 if it is in standby mode. Returns 2 if running. " />
+      <metric defaultrate="purepath" name="Status4" unit="number" description="Returns 0 if the queue manager is stopped. Returns 1 if it is in standby mode. Returns 2 if running. " />
+      <metric defaultrate="purepath" name="Status2" unit="number" description="Returns 0 if the queue manager is stopped. Returns 1 if it is in standby mode. Returns 2 if running. " />
+      <metric defaultrate="purepath" name="Running State1" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Running State2" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Running State3" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Running State4" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Stopped2" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Stopped1" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Stopped4" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Stopped3" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Stopped5" unit="number" description="My metric description ..." />
+      <metric defaultrate="purepath" name="Running State5" unit="number" description="My metric description ..." />
+    </metricgroup>
+  </extension>
+</plugin>
+
