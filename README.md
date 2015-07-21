@@ -7,4 +7,4 @@ With this plugin you can monitor a WebSphere MQ QueueManager, its Queues, Topics
 **This plugin is also included in our** **[WebSphere MQ Monitoring Fastpack](https://github.com/dynaTrace/Dynatrace-WebSphere-MQ-Monitoring-Fastpack)****, augmented by dashboards and a template system profile!**
 
 
-Find further information in the [dynatrace community](https://community.compuwareapm.com/community/display/DL/WebSphere+MQ+Monitoring+Plugin) 
+Find further information in the [dynatrace community](https://community.dynatrace.com/community/display/DL/WebSphere+MQ+Monitoring+Plugin) 
